@@ -9,8 +9,18 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        try:
+            company = Company.objects.get(user=request.user)
+            context = {'user_type': 'company', 'profile': company}
+        except Company.DoesNotExist:
 
+            student = Company.objects.get(user=request.user)
+            context = {'user_type': 'student', 'profile': student}
+
+        return render(request, 'index.html', context)
+
+    return render(request, 'index.html')
 def user_logout(request):
     logout(request)
     return redirect('index')
@@ -30,12 +40,12 @@ def company_registration(request):
                 raise IntegrityError('Username already exists.')
 
             user = User.objects.create_user(email=email, username=email, password=password)
-            company = Company.objects.create(company_name=company_name, company_address=company_address, company_bio=company_bio, website=website, contact_number=contact_number, email= email)
+            company = Company.objects.create(user=user, company_name=company_name, company_address=company_address, company_bio=company_bio, website=website, contact_number=contact_number, email= email, type="company")
 
             user.save()
             company.save()
             messages.success(request, 'Account created successful!')
-            return render(request, "company_login.html")
+            return redirect('company_login')
 
         except IntegrityError as e:
             messages.success(request, f'Username already exists. Please choose a different username.')
@@ -54,12 +64,11 @@ def company_login(request):
         password = request.POST['password']
         user = authenticate(request, username=email, password=password)
         if user is not None:
-            login(request, user)
-            company = Company.objects.get(email=email)
+            user1 = Company.objects.get(user=user)
+            if user1.type == "company":
+                login(request, user)
 
-            #return redirect('index', company_name=user.id)
-            return render(request, 'index.html', {'company_id': user.id, "company_name": company.company_name})
-
+                return redirect('index')
         else:
             messages.success(request, 'Invalid username or password')
             return render(request, 'company_login.html')
