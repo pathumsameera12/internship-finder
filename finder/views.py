@@ -111,8 +111,6 @@ def add_job(request):
             messages.error(request, f'There was an error adding the job: {str(e)}')
 
     return render(request, 'add_job.html',{'user_type': 'company','profile': company,})
-def home(request):
-    return render(request, 'index.html')
 def my_joblist(request, comp_id):
     if request.user.is_authenticated:
         profile = Company.objects.get(user=request.user)
