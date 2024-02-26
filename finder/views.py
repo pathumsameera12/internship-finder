@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
-
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -112,7 +112,8 @@ def add_job(request):
 
     return render(request, 'add_job.html',{'user_type': 'company','profile': company,})
 
-def company_profile(request, comp_id):
+  
+ def company_profile(request, comp_id):
     if not request.user.is_authenticated:
         return redirect("company_login")
     company = Company.objects.get(id=comp_id)
@@ -143,3 +144,17 @@ def company_profile(request, comp_id):
 
     return render(request, 'company-profile.html', {'user_type': 'company','profile': company,'company': company})
 
+  
+  def my_joblist(request, comp_id):
+    if request.user.is_authenticated:
+        profile = Company.objects.get(user=request.user)
+
+        company = get_object_or_404(Company, pk=comp_id)
+
+        # Query jobs associated with the company
+        joblist = Job.objects.filter(company=company)
+
+        return render(request, "company_joblist.html", {'user_type': 'company', 'profile': profile, 'joblist': joblist}, )
+
+    else:
+        return redirect('company_login')
