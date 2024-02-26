@@ -111,7 +111,41 @@ def add_job(request):
             messages.error(request, f'There was an error adding the job: {str(e)}')
 
     return render(request, 'add_job.html',{'user_type': 'company','profile': company,})
-def my_joblist(request, comp_id):
+
+  
+ def company_profile(request, comp_id):
+    if not request.user.is_authenticated:
+        return redirect("company_login")
+    company = Company.objects.get(id=comp_id)
+    if request.method == "POST":
+        company_name = request.POST['company_name']
+        company_address = request.POST['address']
+        company_bio = request.POST['company_bio']
+        website = request.POST['company_web']
+        contact_number = request.POST['phone_number']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        company.company_name = company_name
+        company.company_address = company_address
+        company.company_bio = company_bio
+        company.website = website
+        company.contact_number = contact_number
+        company.email = email
+        company.user.username = email
+        company.user.set_password = password
+
+        company.save()
+        company.user.save()
+
+        messages.success(request, 'Account updated successful!')
+
+        return render(request, 'company-profile.html', {'user_type': 'company','profile': company,'company': company})
+
+    return render(request, 'company-profile.html', {'user_type': 'company','profile': company,'company': company})
+
+  
+  def my_joblist(request, comp_id):
     if request.user.is_authenticated:
         profile = Company.objects.get(user=request.user)
 
