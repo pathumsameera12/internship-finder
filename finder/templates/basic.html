@@ -36,7 +36,7 @@
                 </li>
                 {% if not user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">User Login</a>
+                        <a class="nav-link" href="/internship-finder/user_login/">User Login</a>
                      </li>
                     <li class="nav-item">
                         <a class="nav-link {% block company_login %} {% endblock %}" href="/internship-finder/company_login/">Company Login</a>
@@ -48,8 +48,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="delete= {{item.id}}"><i class="fas fa-user-circle" style="color: white; font-size: 32px; margin-left: 10px;"></i></a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <center> <i class="fas fa-user-circle" style="color: black; font-size: 32px; margin-left: 10px;"></i> </center>
+                                <p class="h6" style="text-align: center;">{{ profile.username  }}</p>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Log Out</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                             </ul>
                             </li>
 

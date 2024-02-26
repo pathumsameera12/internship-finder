@@ -15,7 +15,7 @@ def home(request):
             context = {'user_type': 'company', 'profile': company}
         except Company.DoesNotExist:
 
-            student = Company.objects.get(user=request.user)
+            student = Student.objects.get(user=request.user)
             context = {'user_type': 'student', 'profile': student}
 
         return render(request, 'index.html', context)
@@ -142,4 +142,53 @@ def company_profile(request, comp_id):
         return render(request, 'company-profile.html', {'user_type': 'company','profile': company,'company': company})
 
     return render(request, 'company-profile.html', {'user_type': 'company','profile': company,'company': company})
+
+
+# user login
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            user1 = Student.objects.get(user=user)
+            if user1.type == "student":
+                login(request, user)
+
+                return redirect('index')
+        else:
+            messages.success(request, 'Invalid username or password')
+            return render(request, 'user_login.html')
+    else:
+        return render(request, 'user_login.html')
+
+# user register
+def user_register(request):
+    if request.method=="POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password1']
+        category = request.POST['category']
+
+        try:
+            if User.objects.filter(username=username).exists():
+                raise IntegrityError('Username already exists.')
+
+            user = User.objects.create_user(username=username, email=email, password=password)
+            student = Student.objects.create(user=user, username=username, category=category, type="student")
+
+            user.save()
+            student.save()
+            messages.success(request, 'Account created successful!')
+            return redirect('user_login')
+
+        except IntegrityError as e:
+            messages.success(request, f'Username already exists. Please choose a different username.')
+            return render(request, 'user_register.html',{'username': username, 'email': email, 'password': password, 'category': category })
+
+        except Exception as e:
+            messages.success(request, 'There was an error in signup. {str(e)}')
+            return render(request, 'user_register.html')
+    else:
+        return render(request, 'user_register.html')
 
