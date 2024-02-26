@@ -61,10 +61,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarComDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-user-circle" style="color: white; font-size: 32px; margin-left: 10px;"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end" aria-labelledby="navbarComDropdown">
-                                <center><i class="fas fa-user-circle" style="color: black; font-size: 32px; margin-left: 10px;"></i></center>
+                                <center> <i class="fas fa-user-circle" style="color: black; font-size: 32px; margin-left: 10px;"></i> </center>
                                 <p class="h6" style="text-align: center;">{{ profile.company_name }}</p>
                                 <li><a class="dropdown-item" href="#">My Job List</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'company-profile' comp_id=profile.id %}">Profile</a> </li>
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                             </ul>
                             </li>
