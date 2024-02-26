@@ -206,3 +206,22 @@ def user_register(request):
             return render(request, 'user_register.html')
     else:
         return render(request, 'user_register.html')
+    
+def user_job_list(request):
+    if request.user.is_authenticated:
+        try:
+            user1 = Company.objects.get(user=request.user)
+
+            all_jobs = Job.objects.all()
+            context = {'joblist': all_jobs, 'user_type': 'company','profile': user1}    
+        except Company.DoesNotExist:
+
+            user1 = Student.objects.get(user=request.user)
+
+            suggested_jobs = Job.objects.filter(category=user1.category)
+            context = {'joblist': suggested_jobs ,'user_type': 'student','profile': user1}
+            
+        return render(request, 'user_job_list.html', context)
+    all_jobs = Job.objects.all()
+    context = {'joblist': all_jobs}
+    return render(request, 'user_job_list.html', context)
