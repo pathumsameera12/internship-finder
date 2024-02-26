@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed9dda3-c74e-4bc6-9dbf-3cbffd38c035" name="Changes" comment="" />
+    <list default="true" id="5ed9dda3-c74e-4bc6-9dbf-3cbffd38c035" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/finder/templates/user_login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/finder/templates/user_register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finder/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/finder/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finder/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/finder/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finder/templates/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/finder/templates/basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finder/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/finder/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finder/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/finder/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,9 +51,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
   <component name="ProjectId" id="2cX8VJMnk7iHd0dzxNGMU6FvWXD" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -52,6 +58,11 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/finder/templates" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -80,6 +91,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\PycharmProjects\internship-finder\finder\templates" />
       <recent name="$PROJECT_DIR$/finder/templates" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -87,7 +99,6 @@
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -113,7 +124,6 @@
 
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -153,7 +163,6 @@
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -166,7 +175,6 @@
     </configuration>
     <configuration default="true" type="docs" factoryName="Docutils task">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -184,7 +192,6 @@
     </configuration>
     <configuration default="true" type="docs" factoryName="Sphinx task">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -202,7 +209,6 @@
     </configuration>
     <configuration default="true" type="tests" factoryName="Autodetect">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -218,7 +224,6 @@
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <module name="internship-finder" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -273,21 +278,6 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/feature/company_login_and_register" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -310,6 +300,21 @@
                 </TextFilterSettings>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/feature/company_login_and_register" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>

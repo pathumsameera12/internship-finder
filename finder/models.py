@@ -32,3 +32,15 @@ class Job(models.Model):
     def __str__(self):
         return self.title
 
+
+class Student(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=20)
+    email = models.EmailField()
+    password = models.CharField(max_length=50)
+    category = models.CharField(max_length=100)
+    type     = models.CharField(max_length=15, default='student')
+
+    def __str__(self):
+        return self.username
