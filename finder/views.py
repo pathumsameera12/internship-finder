@@ -113,7 +113,7 @@ def add_job(request):
     return render(request, 'add_job.html',{'user_type': 'company','profile': company,})
 
   
- def company_profile(request, comp_id):
+def company_profile(request, comp_id):
     if not request.user.is_authenticated:
         return redirect("company_login")
     company = Company.objects.get(id=comp_id)
@@ -145,7 +145,7 @@ def add_job(request):
     return render(request, 'company-profile.html', {'user_type': 'company','profile': company,'company': company})
 
   
-  def my_joblist(request, comp_id):
+def my_joblist(request, comp_id):
     if request.user.is_authenticated:
         profile = Company.objects.get(user=request.user)
 
