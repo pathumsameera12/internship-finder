@@ -58,7 +58,7 @@
     
         {% for Job in joblist %}
             <div class="list">
-                <a style="text-decoration: none;" href="#">
+                <a style="text-decoration: none;" href="{% url 'job_details' job_id=Job.id %}">
                     <h3>{{Job.title}} - {{Job.job_type}}</h3><hr>
                     <h5>Company - {{Job.company}}</h5>
                     <h5>Category - {{Job.category}}</h5>

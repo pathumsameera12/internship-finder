@@ -249,3 +249,19 @@ def student_profile(request, stu_id):
 
     return render(request, 'student_profile.html', {'user_type': 'company','profile': student,'student': student})
 
+
+def job_details(request, job_id):
+    if request.user.is_authenticated:
+        try:
+            profile = Company.objects.get(user=request.user)
+            user_type = 'company'
+        except Company.DoesNotExist:
+
+            profile = Company.objects.get(user=request.user)
+            user_type = 'student'
+
+        job = Job.objects.get(id=job_id)
+        return render(request, "job_details.html", {'user_type': user_type, 'profile': profile, 'job': job}, )
+
+    job = Job.objects.get(id=job_id)
+    return render(request, "job_details.html", {'job': job}, )
