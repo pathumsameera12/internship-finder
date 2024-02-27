@@ -257,7 +257,7 @@ def job_details(request, job_id):
             user_type = 'company'
         except Company.DoesNotExist:
 
-            profile = Company.objects.get(user=request.user)
+            profile = Student.objects.get(user=request.user)
             user_type = 'student'
 
         job = Job.objects.get(id=job_id)
