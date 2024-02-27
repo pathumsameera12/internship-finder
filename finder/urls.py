@@ -11,5 +11,6 @@ urlpatterns = [
     path('my_joblist/<int:comp_id>/', views.my_joblist, name='my_joblist'),
     path('user_register/', views.user_register),
     path('user_login/', views.user_login, name='user_login'),
+    path('user_job_list/', views.user_job_list, name='user_job_list'),
 
 ]
