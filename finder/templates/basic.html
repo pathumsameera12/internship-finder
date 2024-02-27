@@ -50,7 +50,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <center> <i class="fas fa-user-circle" style="color: black; font-size: 32px; margin-left: 10px;"></i> </center>
                                 <p class="h6" style="text-align: center;">{{ profile.username  }}</p>                                
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'student-profile' stu_id=profile.id %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                             </ul>
                             </li>
