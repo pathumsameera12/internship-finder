@@ -225,3 +225,27 @@ def user_job_list(request):
     all_jobs = Job.objects.all()
     context = {'joblist': all_jobs}
     return render(request, 'user_job_list.html', context)
+
+def student_profile(request, stu_id):
+    student = Student.objects.get(id=stu_id)
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password1']
+        category = request.POST['category']
+
+        student.username = username
+        student.email = email
+        student.category = category
+        student.user.username = username
+        student.user.set_password = password
+
+        student.save()
+        student.user.save()
+
+        messages.success(request, 'Account updated successful!')
+
+        return render(request, 'student_profile.html', {'user_type': 'company','profile': student,'student': student})
+
+    return render(request, 'student_profile.html', {'user_type': 'company','profile': student,'student': student})
+
