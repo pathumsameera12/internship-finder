@@ -13,6 +13,8 @@ urlpatterns = [
     path('user_login/', views.user_login, name='user_login'),
     path('user_job_list/', views.user_job_list, name='user_job_list'),
     path('student_profile/<int:stu_id>/', views.student_profile, name='student-profile'),
-    path('job_details/<int:job_id>/', views.job_details, name='job_details')
+    path('job_details/<int:job_id>/', views.job_details, name='job_details'),
+    path('edit_job/<int:job_id>/<int:comp_id>/', views.edit_job, name='edit_job'),
+    path('delete_job/<int:job_id>/', views.delete_job, name='delete_job'),
 
 ]

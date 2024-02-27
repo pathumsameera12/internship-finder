@@ -154,10 +154,12 @@ def my_joblist(request, comp_id):
         # Query jobs associated with the company
         joblist = Job.objects.filter(company=company)
 
-        return render(request, "company_joblist.html", {'user_type': 'company', 'profile': profile, 'joblist': joblist}, )
+        return render(request, "company_joblist.html", {'user_type': 'company', 'profile': profile, 'joblist': joblist, 'comp_id': comp_id})
 
     else:
         return redirect('company_login')
+
+
       
 
 def user_login(request):
@@ -265,3 +267,62 @@ def job_details(request, job_id):
 
     job = Job.objects.get(id=job_id)
     return render(request, "job_details.html", {'job': job}, )
+
+def edit_job(request, job_id,comp_id):
+    if not request.user.is_authenticated:
+        return redirect('company_login')
+
+    user = request.user
+    company = user.company
+
+    job = get_object_or_404(Job, pk=job_id)
+
+    if request.method == "POST":
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        email = request.POST.get('email')
+        time_date = request.POST.get('time_date')
+        skill = request.POST.get('skill')
+        job_type = request.POST.get('job_type')
+        location = request.POST.get('location')
+        category = request.POST.get('category')
+
+        try:
+            job.title = title
+            job.description = description
+            job.email = email
+            job.time_date = time_date
+            job.skill = skill
+            job.job_type = job_type
+            job.location = location
+            job.category = category
+            job.save()
+            messages.success(request, 'Job updated successfully!')
+            return redirect('index')  # Redirect to the same page or any other page as needed
+
+        except Exception as e:
+            messages.error(request, f'There was an error updating the job: {str(e)}')
+
+    return render(request, 'edit_job.html', {'job': job, 'user_type': 'company', 'profile': company})
+
+
+def delete_job(request, job_id):
+    if request.method == 'POST':
+        # Ensure the user is authenticated
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("You don't have permission to access this page.")
+
+        # Get the job object
+        job = get_object_or_404(Job, pk=job_id)
+
+        # Ensure the user owns the job
+        if job.company.user != request.user:
+            return HttpResponseForbidden("You don't have permission to delete this job.")
+
+        # Delete the job
+        job.delete()
+
+        messages.success(request, 'Job deleted successfully!')
+        return redirect('my_joblist', comp_id=request.user.company.id)
+    else:
+        return HttpResponseForbidden("Invalid request method.")
